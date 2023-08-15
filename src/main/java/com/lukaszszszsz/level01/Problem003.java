@@ -10,6 +10,12 @@ import java.util.stream.Stream;
 
 public class Problem003 {
 
+    static long largestPrimeFactor(long number) {
+
+        return getPrimeFactors(number).max(Long::compareTo).get();
+
+    }
+
     public static Stream<Long> primeNumbersTill(Long n) {
         return LongStream.rangeClosed(2, n)
                 .filter(x -> isPrime(x)).boxed();
@@ -17,12 +23,6 @@ public class Problem003 {
     private static boolean isPrime(Long number) {
         return primeNumbersTill((long) (Math.sqrt(number)))
                 .allMatch(n -> number % n != 0);
-    }
-
-    static long largestPrimeFactor(long number) {
-
-        return getPrimeFactors(number).max(Long::compareTo).get();
-
     }
 
     static Stream<Long> getPrimeFactors(long number) {
